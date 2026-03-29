@@ -10,9 +10,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-# -----------------------------
-# 1. Generate Simple Data
-# -----------------------------
+
+ #1. Generate Simple Data
+
 def generate_data(n=200):
     data = []
 
@@ -40,11 +40,9 @@ def generate_data(n=200):
     ])
 
     return df
-
-
-# -----------------------------
+    
 # 2. Prepare Data
-# -----------------------------
+
 df = generate_data()
 
 X = df[['mean', 'std', 'min']]
@@ -54,24 +52,24 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=42
 )
 
-# -----------------------------
+
 # 3. Train Models
-# -----------------------------
+
 lr = LogisticRegression()
 rf = RandomForestClassifier()
 
 lr.fit(X_train, y_train)
 rf.fit(X_train, y_train)
 
-# -----------------------------
+
 # 4. Predictions
-# -----------------------------
+
 lr_pred = lr.predict(X_test)
 rf_pred = rf.predict(X_test)
 
-# -----------------------------
+
 # 5. Results
-# -----------------------------
+
 print("Logistic Regression Accuracy:",
       accuracy_score(y_test, lr_pred))
 
@@ -82,9 +80,9 @@ print("\nConfusion Matrix (Random Forest):")
 print(confusion_matrix(y_test, rf_pred))
 
 
-# -----------------------------
+
 # 6. Simple Plot
-# -----------------------------
+
 plt.scatter(df['mean'], df['std'], c=df['label'])
 plt.xlabel("Mean Consumption")
 plt.ylabel("Standard Deviation")
